@@ -20,7 +20,7 @@ The expected program output is as the following :
  ---------------------------------------------
  The Days where Error-Status > 1%:
  ---------------------------------------------
-  July 17, 2016 __ 2.3 %  errors
+  * July 17, 2016 __ 2.3 %  errors
  ---------------------------------------------
 
 Steps to run the Program :
