@@ -1,12 +1,18 @@
-# Python 2.7.12
+#!/usr/bin/env python
 
 import psycopg2
+import sys
 
 
 def get_TopArticles():
+    try:
+        db = psycopg2.connect(
+            "dbname='news' user='postgres' host='localhost' password='password'")   # noqa
 
-    db = psycopg2.connect(
-        "dbname='news' user='postgres' host='localhost' password='password'")
+    except psycopg2.Error as e:
+        print("Unable to connect to database")
+        sys.exit(1)
+
     c = db.cursor()
     c.execute(
         """SELECT title, COUNT (path) FROM log inner join articles on SUBSTRING (path ,10) = slug   -- # noqa    
@@ -71,7 +77,7 @@ def get_Percentage():
     inner join FailedStatusView 
     on V1Day = V2Day
     where ((FailedStatusView.CountDayFailedStatus ::double precision /
-            AllStatusView.CountAllDayStatus ::double precision) * 100)>1;
+            AllStatusView.CountAllDayStatus ::double precision) * 100)>1;  -- # noqa
 
         """)
 
